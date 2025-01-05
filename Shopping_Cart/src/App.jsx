@@ -1,34 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import CartItem from './components/CartItem'
+import {useCart} from './context/CartContext'
+import {useEffect} from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const {allItems,setItems} = useCart()
+  useEffect(()=>{
+    setItems()
+  }, [])
+  useEffect(()=>{
+    console.log(allItems);
+    
+  }, [allItems])
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="grid place-items-center py-20">
+    <h1 className="text-5xl italic text-gray-500 mb-16">
+    Trend Alert : Must-Have Outfits of the season</h1>
+    <div className="grid grid-cols-3 place-items-start gap-10">
+    {
+      allItems?.map((item)=>{
+        return(
+          <CartItem key = {item.id} item = {item}/>
+        )
+      })
+    }
+    </div>
+    </div>
   )
 }
 
