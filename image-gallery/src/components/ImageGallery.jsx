@@ -2,13 +2,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ImageGallery.css';
+import { im1, im12, im2, im3, im4, im5, im6 } from "../Assets/images"; // Ensure correct paths
 
-// Sample images - replace with your own or fetch from an API
-const images = [
-  'https://via.placeholder.com/800x600?text=Image+1',
-  'https://via.placeholder.com/800x600?text=Image+2',
-  'https://via.placeholder.com/800x600?text=Image+3',
-];
+// Use image paths in the array
+const images = [im1, im2, im12, im3, im4, im5, im6];
 
 const ImageGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
