@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
-import { im1, im12, im2, im3, im4, im5, im6 } from "../Assets/images";
+import { im1, im7, im2, im3, im4, im5, im6,im,im8 } from '../Assets/images';
 import './ImageGallery.css';
 
-const images = [
-  im1, im12, im2, im3, im4, im5, im6
-];
-
+// Array of images for each box
+const images = [im1, im7, im2, im3, im4, im5, im6,im,im8];
 
 const ImageGallery = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const boxRef = useRef(null);
+  const boxRefs = useRef([]);
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -23,8 +21,8 @@ const ImageGallery = () => {
     setSelectedImage(null);
   };
 
-  const handleMouseMove = (e) => {
-    const box = boxRef.current;
+  const handleMouseMove = (e, index) => {
+    const box = boxRefs.current[index];
     const rect = box.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -34,37 +32,46 @@ const ImageGallery = () => {
     box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e, index) => {
     const touch = e.touches[0];
-    handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+    handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY }, index);
   };
 
   useEffect(() => {
-    const box = boxRef.current;
-    box.addEventListener('mousemove', handleMouseMove);
-    box.addEventListener('touchmove', handleTouchMove);
+    boxRefs.current.forEach((box, index) => {
+      box.addEventListener('mousemove', (e) => handleMouseMove(e, index));
+      box.addEventListener('touchmove', (e) => handleTouchMove(e, index));
+    });
 
     return () => {
-      box.removeEventListener('mousemove', handleMouseMove);
-      box.removeEventListener('touchmove', handleTouchMove);
+      boxRefs.current.forEach((box, index) => {
+        box.removeEventListener('mousemove', (e) => handleMouseMove(e, index));
+        box.removeEventListener('touchmove', (e) => handleTouchMove(e, index));
+      });
     };
   }, []);
 
   return (
     <div className="room-container">
-      {/* 3D Box with interactive movement */}
-      <div className="box-container">
-        <div ref={boxRef} className="box">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`box-face ${['front', 'back', 'left', 'right', 'top', 'bottom'][index]}`}
-              onClick={() => openModal(image)}
-            >
-              <img src={image} alt={`Box ${index}`} />
-            </div>
-          ))}
-        </div>
+      {/* Create multiple 3D Boxes */}
+      <div className="room">
+        {images.map((image, boxIndex) => (
+          <div
+            key={boxIndex}
+            ref={(el) => (boxRefs.current[boxIndex] = el)}
+            className="box"
+          >
+            {['front', 'back', 'left', 'right', 'top', 'bottom'].map((face, index) => (
+              <div
+                key={index}
+                className={`box-face ${face}`}
+                onClick={() => openModal(image)}
+              >
+                <img src={image} alt={`Box ${boxIndex} ${face}`} />
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
 
       {/* Modal for full image view */}

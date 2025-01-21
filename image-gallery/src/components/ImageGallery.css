@@ -1,35 +1,18 @@
-/* RoomGallery.css */
-.room-gallery {
-  width: 100vw;
-  height: 100vh;
-  perspective: 1500px;
-  background: linear-gradient(145deg, #6a11cb, #2575fc);
-  overflow: hidden;
-}
-
-.room {
-  width: 100%;
-  height: 100%;
-  position: relative;
+.room-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(145deg, #211e25, #564f63);
+  padding: 50px 150px;
+}
+
+.room {
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 150px; /* Space between boxes */
 }
 
-.box {
-  width: 150px;
-  height: 150px;
-  position: relative;
-  margin: 20px;
-  transform-style: preserve-3d;
-  transform: rotateX(0deg) rotateY(0deg);
-  transition: transform 0.5s ease-in-out;
-}
-
-.box:hover {
-  transform: rotateY(20deg) rotateX(-10deg);
-}
 
 .box-face {
   position: absolute;
@@ -49,30 +32,52 @@
   height: 100%;
   object-fit: cover;
 }
-
-.box-face-1 {
-  transform: translateZ(75px);
+.box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
 }
 
-.box-face-2 {
-  transform: rotateY(90deg) translateZ(75px);
+.box-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+  border: 2px solid #333;
 }
 
-.box-face-3 {
-  transform: rotateY(180deg) translateZ(75px);
+.box-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.box-face-4 {
-  transform: rotateY(-90deg) translateZ(75px);
+.box-face.front {
+  transform: rotateY(0deg) translateZ(100px);
 }
 
-.box-face-5 {
-  transform: rotateX(90deg) translateZ(75px);
+.box-face.back {
+  transform: rotateY(180deg) translateZ(100px);
 }
 
-.box-face-6 {
-  transform: rotateX(-90deg) translateZ(75px);
+.box-face.left {
+  transform: rotateY(-90deg) translateZ(100px);
 }
+
+.box-face.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.box-face.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.box-face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
 
 /* Modal styling */
 .modal {
