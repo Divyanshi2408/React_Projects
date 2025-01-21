@@ -1,12 +1,241 @@
-/* src/App.css */
-.App {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-  background-color: #f5f5f5;
-  min-height: 100vh;
+/* ImageGallery.css
+.room-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  perspective: 1500px;
+  background-color: #f0f0f0;
 }
 
-h1 {
-  color: #333;
+.wall {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #d1ccc0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.front-wall {
+  transform: translateZ(500px);
+}
+
+.back-wall {
+  transform: rotateY(180deg) translateZ(500px);
+}
+
+.left-wall {
+  transform: rotateY(-90deg) translateZ(500px);
+}
+
+.right-wall {
+  transform: rotateY(90deg) translateZ(500px);
+}
+
+.gallery-item {
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  background: #fff;
+  padding: 10px;
+  border: 2px solid #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid #fff;
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-image {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid #fff;
+  cursor: pointer;
+}
+
+
+.box-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateBox 10s infinite linear;
+}
+
+@keyframes rotateBox {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.box-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+  border: 2px solid #333;
+}
+
+.box-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-face.front {
+  transform: rotateY(0deg) translateZ(100px);
+}
+
+.box-face.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.box-face.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.box-face.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.box-face.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.box-face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+} */
+
+/* ImageGallery.css */
+.room-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  perspective: 1500px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.wall {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #d1ccc0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.front-wall {
+  transform: translateZ(500px);
+}
+
+.back-wall {
+  transform: rotateY(180deg) translateZ(500px);
+}
+
+.left-wall {
+  transform: rotateY(-90deg) translateZ(500px);
+}
+
+.right-wall {
+  transform: rotateY(90deg) translateZ(500px);
+}
+
+.gallery-item {
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  background: #fff;
+  padding: 10px;
+  border: 2px solid #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid #fff;
+}
+
+.box-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.box-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+  border: 2px solid #333;
+}
+
+.box-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-face.front {
+  transform: rotateY(0deg) translateZ(100px);
+}
+
+.box-face.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.box-face.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.box-face.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.box-face.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.box-face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
 }
