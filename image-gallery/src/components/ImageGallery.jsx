@@ -1,24 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
-import { im1, im7, im2, im3, im4, im5, im6,im,im8 } from '../Assets/images';
+import { im1, im7, im2, im3, im4, im5, im6, im, im8 } from '../Assets/images';
 import './ImageGallery.css';
 
 // Array of images for each box
-const images = [im1, im7, im2, im3, im4, im5, im6,im,im8];
+const images = [im1, im7, im2, im3, im4, im5, im6, im, im8];
 
 const ImageGallery = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [blurBackground, setBlurBackground] = useState(false); // Added for background blur effect
   const boxRefs = useRef([]);
 
   const openModal = (image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
+    setBlurBackground(true); // Apply blur when modal is open
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedImage(null);
+    setBlurBackground(false); // Remove blur when modal is closed
   };
 
   const handleMouseMove = (e, index) => {
@@ -52,7 +55,7 @@ const ImageGallery = () => {
   }, []);
 
   return (
-    <div className="room-container">
+    <div className={`room-container ${blurBackground ? 'blurred' : ''}`}>
       {/* Create multiple 3D Boxes */}
       <div className="room">
         {images.map((image, boxIndex) => (
@@ -83,13 +86,11 @@ const ImageGallery = () => {
         overlayClassName="overlay"
       >
         {selectedImage && (
-          <div className="modal-content">
+          <div className="modal-content" onClick={closeModal}>
             <img src={selectedImage} alt="Full-size" className="full-image" />
           </div>
         )}
-        <button onClick={closeModal} className="close-button">
-          Close
-        </button>
+        
       </Modal>
     </div>
   );
