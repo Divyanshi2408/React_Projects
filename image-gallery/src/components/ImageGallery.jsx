@@ -57,11 +57,12 @@ const ImageGallery = () => {
   const sparkleVariants = {
     hidden: { opacity: 0, scale: 0 },
     visible: (custom) => ({
-      opacity: 1,
-      scale: 1.5,
-      y: [0, -20, -500],
+      opacity: [1, 0.8, 0.6, 0],
+      scale: [0.5, 0.7, 1, 0],
+      x: [0, Math.random() * 20 - 10, Math.random() * 40 - 20],
+      y: [0, -Math.random() * 50 - 20, -Math.random() * 100 - 50],
       transition: {
-        duration: 2,
+        duration: Math.random() * 2 + 1,
         delay: custom * 0.1,
         repeat: Infinity,
         repeatType: 'loop',
@@ -88,7 +89,7 @@ const ImageGallery = () => {
                   animate="visible"
                   variants={sparkleVariants}
                   style={{
-                    top: `${Math.random() * -30}px`,
+                    top: `${Math.random() * 100}px`,
                     left: `${Math.random() * 100}%`,
                   }}
                 ></motion.span>
