@@ -71,7 +71,10 @@ const ImageGallery = () => {
   };
 
   return (
+    <div className="container">
+    <h1 className="heading">IMAGE GALLERY</h1>
     <div className={`room-container ${blurBackground ? 'blurred' : ''}`}>
+    
       <div className="room">
         {images.map((image, boxIndex) => (
           <div
@@ -121,6 +124,7 @@ const ImageGallery = () => {
           </div>
         )}
       </Modal>
+    </div>
     </div>
   );
 };
