@@ -1,21 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap');
+
 *{
   padding:0;
   margin:0;
   box-sizing:border-box;
 }
 .container {
-  background: linear-gradient(to right, #211e25, #564f63); /* Replace colors as needed */
+  background: linear-gradient(to right, rgba(20, 13, 22, 0.856), rgba(20, 11, 20, 0.959)); /* Gradient colors */
+  backdrop-filter: blur(200px); /* Blur effect */
+  -webkit-backdrop-filter: blur(200px); /* For Safari support */
  
+}
+
+.heading{
+  color:rgb(218, 180, 240);
+  font-family: 'Roboto', sans-serif;
+  padding:10px;
 }
 
 .room-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(145deg, #211e25, #564f63);
+  background: linear-gradient(145deg, #39213b, #724e74);
   padding: 150px;
   margin:0px 40px;
+
 }
+
 .heading{
   text-align:center;
 }

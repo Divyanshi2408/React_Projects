@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { im1, im7, im2, im3, im4, im5, im6, im, im8 } from '../Assets/images';
 import './ImageGallery.css';
 
-const images = [im1, im7, im2, im3, im4, im5, im6, im, im8];
+const images = [im1, im5, im2, im6, im, im7, im3, im4, im8];
 
 const ImageGallery = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
